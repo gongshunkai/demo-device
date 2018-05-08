@@ -4,10 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-sacle=1.0">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
-	<title>设备数据检测</title>
-	<script src="zepto.js"></script>
-	<script src="zepto.callbacks.js"></script>
-	<script src="zepto.deferred.js"></script>
+	<title>模拟设备数据</title>
 	<script src="device.js"></script>
 	<style>
 	*{margin:0;padding:0;}
@@ -18,49 +15,19 @@
 
 </head>
 <body>
-	<ul>
-		<li>language:<span id="l"></span></li>
-		<li>getTimezoneOffset:<span id="tZ"></span></li>
-		<li>indexedDB:<span id="iDB"></span></li>
-		<li>localStorage:<span id="ls"></span></li>
-		<li>sessionStorage:<span id="ses"></span></li>
-		<li>openDatabase:<span id="oDb"></span></li>
-		<li>eval.toString().length:<span id="eL"></span></li>
-		<li>errorToSource:<span id="e2S"></span></li>
-		<li>cookieEnabled:<span id="c"></span></li>
-		<li>navigator.doNotTrack:<span id="dNT"></span></li>
-		<li>navigator.plugins:<span id="p"></span></li>
-		<li>adb:<span id="adb"></span></li>
-		<li>navigator.productSub:<span id="pS"></span></li>
-		<li>navigator.javaEnabled:<span id="j"></span></li>
-		<li>navigator.platform:<span id="pf"></span></li>
-		<li>navigator.hardwareConcurrency:<span id="cc"></span></li>
-		<li>navigator.maxTouchPoints:<span id="t"></span></li>
-		<li>navigator.getUserMedia:<span id="cam"></span></li>
-		<li>navigator.geolocation:<span id="loc"></span></li>
-		<li>onorientationchange:<span id="or"></span></li>
-		<li>devicePixelRatio:<span id="dpr"></span></li>
-		<li>doc的offsetWidth和offsetHeight:<span id="doc"></span></li>
-		<li>window的screenX和screenY:<span id="ws"></span></li>
-		<li>window的innerWidth和innerHeight:<span id="win"></span></li>
-		<li>screen的width,height,availWidth,availHeight,availTop,availLeft,colorDepth,pixelDepth":<span id="scr"></span></li>
-		<li>performance:<span id="la"></span></li>
-		<li>zoom:<span id="z"></span></li>
-		<li>v:<span id="v"></span></li>
-		<li>iframe:<span id="iframe"></span></li>
-		<li>supportFonts:<span id="f"></span></li>
-		<li>canvas:<span id="cFp"></span></li>
-		<li>h5SupportInfo:<span id="h5"></span></li>
-		<li>navigator.getBattery:<span id="b"></span></li>
-		<li>requestAnimationFrame:<span id="raf"></span></li>
-	</ul>
-
+	
 	<script>
-		var g = Device.getDeviceData();
-		g.then(function(e){
-			for(var n in e)
-				$('#' + n).text(e[n]);
+		var d = Device({
+			useragent:'Mozilla/5.0 (iPhone 6sp; CPU iPhone OS 9_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 MQQBrowser/7.4.1 Mobile/13C75 Safari/8536.25 MttCustomUA/2 QBWebViewType/1 WKType/1'
 		});
+
+		var data = d.set();
+
+		var ul = document.createElement('ul');
+		for(var n in data)
+			ul.innerHTML += '<li>' + n + ':<span>' + JSON.stringify(data[n]) + '</span></li>';
+		document.body.appendChild(ul);
+		
 	</script>
 </body>
 </html>
